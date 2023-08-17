@@ -5,7 +5,6 @@ public abstract class Piece {
     private boolean isWhite;
     private boolean isEaten;
     private List<Square> validMoves;
-    String representation;
 
     public Piece(boolean isWhite){
         this.isWhite = isWhite;
@@ -33,5 +32,6 @@ public abstract class Piece {
     }
 
     public abstract void setValidMoves();
+    public abstract String getRep();
 
 }

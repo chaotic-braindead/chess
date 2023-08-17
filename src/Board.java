@@ -1,29 +1,27 @@
 public class Board {
-    private Square[][] board = new Square[8][8];
+    private Square[][] board;
     public Board(){
         this.resetBoard();
     }
 
     public void print(){
         for(int i = 0; i < 8; ++i){
-            System.out.println("--------------------------------");
+            System.out.println("---------------------------------");
             System.out.print("|");
             for(int j = 0; j < 8; ++j){
                 if(this.board[i][j].getPiece() != null)
-                    System.out.print(" " + this.board[i][j].getPiece().representation + " |");
+                    System.out.print(" " + this.board[i][j].getPiece().getRep() + " |");
                 else
                     System.out.print("   |");
-                if(j == 7) System.out.println();
             }
+            System.out.println();
         }
-        System.out.println("--------------------------------");
-    }
-    public void placePiece(Square s, Piece p){
-        board[s.getX()][s.getY()].setPiece(p);
+        System.out.println("---------------------------------");
     }
 
     private void resetBoard(){
         // black
+        this.board = new Square[8][8];
         this.board[0][0] = new Square(0, 0, new Rook(false));
         this.board[0][1] = new Square(0, 1, new Knight(false));
         this.board[0][2] = new Square(0, 2, new Bishop(false));
@@ -53,7 +51,7 @@ public class Board {
 
         for(int i = 2; i < 6; ++i){
             for(int j = 0; j < 8; ++j){
-                this.board[i][j] = new Square(i+1, j+1, null);
+                this.board[i][j] = new Square(i, j, null);
             }
         }
     }

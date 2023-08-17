@@ -1,7 +1,11 @@
 public class Knight extends Piece{
+    static final private String representation = "7";
     public Knight(boolean isWhite){
         super(isWhite);
-        this.representation = "7";
+    }
+    @Override
+    public String getRep(){
+        return Knight.representation;
     }
     @Override
     public void setValidMoves(){}

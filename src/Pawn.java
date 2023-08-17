@@ -1,8 +1,12 @@
 public class Pawn extends Piece{
-    
+    static final private String representation = "i";
     public Pawn(boolean isWhite){
         super(isWhite);
-        this.representation = "i";
+    }
+
+    @Override
+    public String getRep(){
+        return Pawn.representation;
     }
 
     @Override
