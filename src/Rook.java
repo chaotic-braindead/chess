@@ -1,5 +1,6 @@
 public class Rook extends Piece {
     static final private String representation = "#";
+    
     public Rook(boolean isWhite){
         super(isWhite);
     }

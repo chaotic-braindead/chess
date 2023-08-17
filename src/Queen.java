@@ -1,5 +1,6 @@
 public class Queen extends Piece{
     static final private String representation = "*";
+    
     public Queen(boolean isWhite){
         super(isWhite);
     }
