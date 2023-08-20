@@ -1,10 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.MouseAdapter;
 import java.awt.Color;
 
-public class ChessGUI extends JFrame implements MouseListener{
+public class ChessGUI extends JFrame{
     static final int width = 800;
     static final int height = 800;
     static final int rows = (width / 8);
@@ -13,7 +13,28 @@ public class ChessGUI extends JFrame implements MouseListener{
     static final int gapY = (height / cols) * 10;
 
     Board b = new Board();
-    JPanel p = new JPanel(){
+    ChessPanel p = new ChessPanel();
+
+    public ChessGUI(){
+        this.setSize(width, height); 
+        this.setVisible(true);
+        p.addMouseListener(new ChessMouseListener());
+        this.add(p);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public class ChessMouseListener extends MouseAdapter{
+        @Override 
+        public void mouseClicked(MouseEvent e){
+            int y = e.getX() / gapX;
+            int x = e.getY() / gapY;
+            if(e.getButton() == 1 && b.getBoard()[x][y].getPiece() != null){
+                System.out.println("Clicked board[" + x + "][" + y + "]");
+            }
+        }
+    }
+    
+    public class ChessPanel extends JPanel {
         @Override
         public void paint(Graphics g){
             Graphics2D g2 = (Graphics2D) g;
@@ -46,39 +67,5 @@ public class ChessGUI extends JFrame implements MouseListener{
                 }
             }
         }
-    };
-
-    public ChessGUI(){
-        this.setSize(width, height); 
-        this.setVisible(true);
-        p.addMouseListener(this);
-        this.add(p);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
-
-    @Override 
-    public void mouseClicked(MouseEvent e){
-        int y = e.getX() / gapX;
-        int x = e.getY() / gapY;
-        if(e.getButton() == 1 && b.getBoard()[x][y].getPiece() != null){
-            System.out.println("Clicked board[" + x + "][" + y + "]");
-        }
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e){
-        
-    }
-    @Override
-    public void mouseEntered(MouseEvent e){
-
-    }
-    @Override
-    public void mousePressed(MouseEvent e){
-
-    }
-    @Override
-    public void mouseExited(MouseEvent e){
-
     }
 }
