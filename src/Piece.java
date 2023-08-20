@@ -21,7 +21,7 @@ public abstract class Piece {
         isEaten = false;
         validMoves = new ArrayList<>();
         try{
-            if(!isWhite) path = path.substring(0, 37) + "b" + path.substring(37);  //wonky AF lmao
+            if(!isWhite) path = path.substring(0, 37) + "b" + path.substring(37);  // i know this creates new string instances but it works so... 
             BufferedImage image = ImageIO.read(new File(path));
             this.icon = new ImageIcon(image).getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH);
 
