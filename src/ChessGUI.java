@@ -55,13 +55,13 @@ public class ChessGUI extends JFrame implements WindowListener{
                     System.out.printf("Clicked board[%d][%d] || Piece type = %s %s\n", x, y, w, p.getClass().getName());
                     System.out.println("Available moves:");
                     
-                    // this piece of code moves the piece. TODO: implement highlight and click movement.
+                    // the following lines of code move a selected piece. TODO: implement highlight and click movement.
                     p.getValidMoves().get(0).setPiece(p);
                     b.getBoard()[x][y].setPiece(null);
                     if(p.getClass().getName() == "Pawn"){
                         Pawn pawn = (Pawn) p;
                         pawn.firstMove = false;
-                    }
+                    } 
                     b.generateMoves();
                     for(Square s : p.getValidMoves()){
                         System.out.printf("%d %d\n", s.getX(), s.getY());
