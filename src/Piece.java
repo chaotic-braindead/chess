@@ -38,7 +38,7 @@ public abstract class Piece {
     public boolean getIsEaten(){
         return this.isEaten;
     } 
-
+    
     public List<Square> getValidMoves(){
         return validMoves;
     }
@@ -55,6 +55,6 @@ public abstract class Piece {
         this.isEaten = isEaten;
     }
 
-
+    // TODO: implement moves for all pieces god help me
     public abstract void setValidMoves();
 }

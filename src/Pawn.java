@@ -5,7 +5,8 @@ public class Pawn extends Piece{
     public Pawn(boolean isWhite, String path){
         super(isWhite, path);
     }
-
+    
+  
     @Override
     public void setValidMoves(){
         
