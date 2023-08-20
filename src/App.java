@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.Color;
 public class App {
     public static void main(String[] args) throws Exception {
         Test t = new Test();
@@ -25,10 +26,10 @@ public class App {
                     for(int j = 0; j < 8; ++j){
                         Rectangle r = new Rectangle(i * gapX, j * gapY, gapX, gapY);
                         if(isWhite){
-                            g2.setColor(Color.WHITE);
+                            g2.setColor(new Color(118, 150, 86));
                         }
                         else{
-                            g2.setColor(Color.BLACK);
+                            g2.setColor(new Color(238, 238, 210));
                         }
                         g2.fill(r);
                         // g2.fillRect(i * gapX, j * gapY, gapX, gapY);
@@ -40,7 +41,7 @@ public class App {
                 for(int i = 0; i < 8; i++){
                     for(int j = 0; j < 8; j++){
                         if(board[j][i].getPiece() != null){
-                            g.drawImage(board[j][i].getPiece().getIcon(), i*gapX, j*gapY, this);
+                            g.drawImage(board[j][i].getPiece().getIcon(), i*gapX + 2, j*gapY + 3, this);
                         }
                     }
                 }

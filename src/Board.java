@@ -41,13 +41,13 @@ public class Board {
             this.board[6][i] = new Square(6, i, new Pawn(true, Pawn.path));
 
         this.board[7][0] = new Square(7, 0, new Rook(true, Rook.path));
-        this.board[7][1] = new Square(7, 1, new Knight(false, Knight.path));
-        this.board[7][2] = new Square(7, 2, new Bishop(false, Bishop.path));
-        this.board[7][3] = new Square(7, 3, new Queen(false, Queen.path));
-        this.board[7][4] = new Square(7, 4, new King(false, King.path));
-        this.board[7][5] = new Square(7, 5, new Bishop(false, Bishop.path));
-        this.board[7][6] = new Square(7, 6, new Knight(false, Knight.path));
-        this.board[7][7] = new Square(7, 7, new Rook(false, Rook.path));
+        this.board[7][1] = new Square(7, 1, new Knight(true, Knight.path));
+        this.board[7][2] = new Square(7, 2, new Bishop(true, Bishop.path));
+        this.board[7][3] = new Square(7, 3, new Queen(true, Queen.path));
+        this.board[7][4] = new Square(7, 4, new King(true, King.path));
+        this.board[7][5] = new Square(7, 5, new Bishop(true, Bishop.path));
+        this.board[7][6] = new Square(7, 6, new Knight(true, Knight.path));
+        this.board[7][7] = new Square(7, 7, new Rook(true, Rook.path));
 
         for(int i = 2; i < 6; ++i){
             for(int j = 0; j < 8; ++j){

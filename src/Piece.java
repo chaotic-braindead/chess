@@ -1,5 +1,7 @@
 import java.util.List;
 import javax.imageio.ImageIO;
+import javax.print.attribute.standard.MediaSize.ISO;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,8 +21,9 @@ public abstract class Piece {
         isEaten = false;
         validMoves = new ArrayList<>();
         try{
+            if(!isWhite) path = path.substring(0, 37) + "b" + path.substring(37);  //wonky AF lmao
             BufferedImage image = ImageIO.read(new File(path));
-            this.icon = new ImageIcon(image).getImage();
+            this.icon = new ImageIcon(image).getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH);
 
         } catch(IOException e){
             e.printStackTrace();
