@@ -43,6 +43,15 @@ public abstract class Piece {
         return validMoves;
     }
 
+
+    public void addValidMove(Square s){
+        validMoves.add(s);
+    }
+
+    public void clearValidMoves(){
+        validMoves.clear();
+    }
+
     public Image getIcon(){
         return this.icon;
     }
@@ -56,5 +65,5 @@ public abstract class Piece {
     }
 
     // TODO: implement moves for all pieces god help me
-    public abstract void setValidMoves();
+    public abstract void setValidMoves(Board b, Square s);
 }

@@ -2,23 +2,8 @@ public class Board {
     private Square[][] board;
     public Board(){
         this.resetBoard();
+        this.generateMoves();
     }
-
-    // public void print(){
-    //     for(int i = 0; i < 8; ++i){
-    //         System.out.println("---------------------------------");
-    //         System.out.print("|");
-    //         for(int j = 0; j < 8; ++j){
-    //             if(this.board[i][j].getPiece() != null)
-    //                 System.out.print(" " + this.board[i][j].getPiece().asString() + " |");
-    //             else
-    //                 System.out.print("   |");
-    //         }
-    //         System.out.println();
-    //     }
-    //     System.out.println("---------------------------------");
-    // }
-
     private void resetBoard(){
         // black
         this.board = new Square[8][8];
@@ -52,6 +37,18 @@ public class Board {
         for(int i = 2; i < 6; ++i){
             for(int j = 0; j < 8; ++j){
                 this.board[i][j] = new Square(i, j, null);
+            }
+        }
+    }
+
+    public void generateMoves(){
+        for(int i = 0; i < 8; ++i){
+            for(int j = 0; j < 8; ++j){
+                Square s = this.board[i][j];
+                Piece p = s.getPiece();
+                if(p != null){
+                    p.setValidMoves(this, s);
+                }
             }
         }
     }

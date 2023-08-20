@@ -3,7 +3,7 @@ public class Bishop extends Piece{
     public Bishop(boolean isWhite, String path){
         super(isWhite, path);
     }
-   
+
     @Override
-    public void setValidMoves(){}
+    public void setValidMoves(Board b, Square s){}
 }
