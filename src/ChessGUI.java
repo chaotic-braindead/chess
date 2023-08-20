@@ -55,7 +55,7 @@ public class ChessGUI extends JFrame implements WindowListener{
                     System.out.printf("Clicked board[%d][%d] || Piece type = %s %s\n", x, y, w, p.getClass().getName());
                     System.out.println("Available moves:");
                     
-                    // the following lines of code move a selected piece. TODO: implement highlight and click movement.
+                    // the following lines of code move a selected piece (currently broken and works only on pawns). TODO: implement highlight and click movement.
                     p.getValidMoves().get(0).setPiece(p);
                     b.getBoard()[x][y].setPiece(null);
                     if(p.getClass().getName() == "Pawn"){
