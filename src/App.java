@@ -2,8 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.geom.Rectangle2D;
-
 public class App {
     public static void main(String[] args) throws Exception {
         Test t = new Test();
@@ -22,7 +20,7 @@ public class App {
             public void paint(Graphics g){
                 Graphics2D g2 = (Graphics2D) g;
                 boolean isWhite = true;
-                
+                Square[][] board = b.getBoard();
                 for(int i = 0; i < 8; ++i){
                     for(int j = 0; j < 8; ++j){
                         Rectangle r = new Rectangle(i * gapX, j * gapY, gapX, gapY);
@@ -34,10 +32,17 @@ public class App {
                         }
                         g2.fill(r);
                         // g2.fillRect(i * gapX, j * gapY, gapX, gapY);
-                        b.getBoard()[i][j].setSquare(r);
+                        board[i][j].setSquare(r);
                         isWhite = !isWhite;
                     }
                     isWhite = !isWhite;
+                }
+                for(int i = 0; i < 8; i++){
+                    for(int j = 0; j < 8; j++){
+                        if(board[j][i].getPiece() != null){
+                            g.drawImage(board[j][i].getPiece().getIcon(), i*gapX, j*gapY, this);
+                        }
+                    }
                 }
             }
         };
@@ -55,7 +60,7 @@ public class App {
 
             int y = e.getX() / gapX;
             int x = e.getY() / gapY;
-            if(e.getButton() == 1 && b.getBoard()[x][y].r != null){
+            if(e.getButton() == 1 && b.getBoard()[x][y].getRect() != null){
                 System.out.println("Clicked board[" + x + "][" + y + "]");
             }
 

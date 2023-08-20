@@ -1,12 +1,9 @@
 public class Knight extends Piece{
-    static final private String representation = "7";
-    public Knight(boolean isWhite){
-        super(isWhite);
+    final static String path = "C:\\Users\\raf\\Desktop\\chess\\chess\\img\\knight.png";
+    public Knight(boolean isWhite, String path){
+        super(isWhite, path);
     }
-    @Override
-    public String asString(){
-        return Knight.representation;
-    }
+    
     @Override
     public void setValidMoves(){}
 }

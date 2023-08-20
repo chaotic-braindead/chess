@@ -1,10 +1,10 @@
 public class King extends Piece {
-    static final private String representation = "+";
+    final static String path = "C:\\Users\\raf\\Desktop\\chess\\chess\\img\\king.png";
 
     private boolean canCastle = true;
 
-    public King(boolean isWhite){
-        super(isWhite);
+    public King(boolean isWhite, String path){
+        super(isWhite, path);
     }
 
     public boolean getCanCastle(){
@@ -15,10 +15,6 @@ public class King extends Piece {
         this.canCastle = canCastle;
     }
 
-    @Override
-    public String asString(){
-        return King.representation;
-    }
     @Override
     public void setValidMoves(){}
 }

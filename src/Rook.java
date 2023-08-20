@@ -1,13 +1,9 @@
 public class Rook extends Piece {
-    static final private String representation = "#";
+    final static String path = "C:\\Users\\raf\\Desktop\\chess\\chess\\img\\rook.png";
+    public Rook(boolean isWhite, String path){
+        super(isWhite, path);
+    }
 
-    public Rook(boolean isWhite){
-        super(isWhite);
-    }
-    @Override
-    public String asString(){
-        return Rook.representation;
-    }
     @Override
     public void setValidMoves(){}
 }

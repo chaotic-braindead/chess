@@ -1,12 +1,7 @@
 public class Pawn extends Piece{
-    static final private String representation = "i";
-    public Pawn(boolean isWhite){
-        super(isWhite);
-    }
-
-    @Override
-    public String asString(){
-        return Pawn.representation;
+    final static String path = "C:\\Users\\raf\\Desktop\\chess\\chess\\img\\pawn.png";
+    public Pawn(boolean isWhite, String path){
+        super(isWhite, path);
     }
 
     @Override

@@ -4,7 +4,7 @@ public class Square {
     private int x;
     private int y;
     private Piece p;
-    Rectangle r;
+    private Rectangle r;
 
 
     public Square(int x, int y, Piece p){
@@ -24,6 +24,10 @@ public class Square {
 
     public Piece getPiece(){
         return this.p;
+    }
+
+    public Rectangle getRect(){
+        return this.r;
     }
 
     public void setX(int x){
