@@ -4,7 +4,7 @@ public class Knight extends Piece{
         super(isWhite);
     }
     @Override
-    public String getRep(){
+    public String asString(){
         return Knight.representation;
     }
     @Override

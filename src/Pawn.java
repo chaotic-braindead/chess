@@ -5,7 +5,7 @@ public class Pawn extends Piece{
     }
 
     @Override
-    public String getRep(){
+    public String asString(){
         return Pawn.representation;
     }
 

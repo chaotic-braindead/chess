@@ -1,6 +1,6 @@
 public class King extends Piece {
     static final private String representation = "+";
-    
+
     private boolean canCastle = true;
 
     public King(boolean isWhite){
@@ -16,7 +16,7 @@ public class King extends Piece {
     }
 
     @Override
-    public String getRep(){
+    public String asString(){
         return King.representation;
     }
     @Override

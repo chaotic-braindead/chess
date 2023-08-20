@@ -8,6 +8,7 @@ public abstract class Piece {
 
     public Piece(boolean isWhite){
         this.isWhite = isWhite;
+        isEaten = false;
         validMoves = new ArrayList<>();
     }
 
@@ -32,6 +33,6 @@ public abstract class Piece {
     }
 
     public abstract void setValidMoves();
-    public abstract String getRep();
+    public abstract String asString();
 
 }

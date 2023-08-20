@@ -1,12 +1,17 @@
+import java.awt.*;
+import java.awt.geom.Rectangle2D;
 public class Square {
     private int x;
     private int y;
     private Piece p;
+    Rectangle r;
+
 
     public Square(int x, int y, Piece p){
         this.x = x;
         this.y = y;
         this.p = p;
+        
     }
 
     public int getX(){
@@ -31,5 +36,9 @@ public class Square {
 
     public void setPiece(Piece p){
         this.p = p;
+    }
+    
+    public void setSquare(Rectangle r){
+        this.r = r;
     }
 }

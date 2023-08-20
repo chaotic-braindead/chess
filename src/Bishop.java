@@ -1,11 +1,11 @@
 public class Bishop extends Piece{
     static final private String representation = "/";
-    
+
     public Bishop(boolean isWhite){
         super(isWhite);
     }
     @Override
-    public String getRep(){
+    public String asString(){
         return Bishop.representation;
     }
     @Override

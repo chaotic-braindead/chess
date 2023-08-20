@@ -10,7 +10,7 @@ public class Board {
             System.out.print("|");
             for(int j = 0; j < 8; ++j){
                 if(this.board[i][j].getPiece() != null)
-                    System.out.print(" " + this.board[i][j].getPiece().getRep() + " |");
+                    System.out.print(" " + this.board[i][j].getPiece().asString() + " |");
                 else
                     System.out.print("   |");
             }
@@ -56,4 +56,7 @@ public class Board {
         }
     }
 
+    public Square[][] getBoard(){
+        return board;
+    }
 }
