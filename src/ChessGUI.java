@@ -31,7 +31,7 @@ public class ChessGUI extends JFrame implements MouseListener{
                         g2.setColor(new Color(238, 238, 210));
                     }
                     g2.fill(r);
-                    board[i][j].setSquare(r);
+                    board[i][j].setRect(r);
                     isWhite = !isWhite;
                 }
                 isWhite = !isWhite;

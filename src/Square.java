@@ -42,7 +42,7 @@ public class Square {
         this.p = p;
     }
     
-    public void setSquare(Rectangle r){
+    public void setRect(Rectangle r){
         this.r = r;
     }
 }
