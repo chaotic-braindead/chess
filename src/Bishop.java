@@ -4,6 +4,7 @@ public class Bishop extends Piece{
         super(isWhite, path);
     }
 
+    // god this is depressing i should fix this when i'm in a better state of mind
     @Override
     public void setValidMoves(Board b, Square s){
         this.clearValidMoves();
@@ -11,7 +12,7 @@ public class Bishop extends Piece{
         int j = s.getY() + 1;
         boolean playerColor = this.getIsWhite();
         boolean oppositeColorHit = false;
-        
+
         for(int i = s.getX() - 1; i >= 0 && j <= 7; --i){
             if(oppositeColorHit) break;
             Square possibleMove = board[i][j];
@@ -50,8 +51,6 @@ public class Bishop extends Piece{
             if(possibleMove.getPiece() != null && possibleMove.getPiece().getIsWhite() != playerColor) oppositeColorHit = true;
             this.addValidMove(possibleMove);
         }
-
-        // System.out.println(possibleMove.getX() + " " + possibleMove.getY());
     }
 }
 
