@@ -5,7 +5,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.WindowListener;
 import java.awt.event.WindowEvent;
 
-public class ChessGUI extends JFrame implements WindowListener{
+public class ChessGUI extends JFrame{
     static final int WIDTH = 800;
     static final int HEIGHT = 800;
     static final int ROWS = (WIDTH / 8);
@@ -28,21 +28,6 @@ public class ChessGUI extends JFrame implements WindowListener{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     
     }
-
-    @Override
-    public void windowActivated(WindowEvent e){}
-    @Override
-    public void windowClosing(WindowEvent e){}
-    @Override
-    public void windowIconified(WindowEvent e){}
-    @Override
-    public void windowOpened(WindowEvent e){}
-    @Override
-    public void windowClosed(WindowEvent e){ this.isRunning = false; }
-    @Override
-    public void windowDeiconified(WindowEvent e){}
-    @Override
-    public void windowDeactivated(WindowEvent e){}
 
     public class ChessMouseListener extends MouseAdapter{
         ChessGUI p;
