@@ -4,7 +4,8 @@ public class King extends Piece {
     final static String path = "C:\\Users\\raf\\Desktop\\chess\\chess\\img\\king.png";
     
     private boolean canCastle = true;
-
+    private boolean isChecked = false;
+    
     public King(boolean isWhite, String path){
         super(isWhite, path);
     }
@@ -35,7 +36,15 @@ public class King extends Piece {
                 if(possibleMove.getPiece() == null || possibleMove.getPiece().getIsWhite() != playerColor) this.addValidMove(possibleMove);
             }
         }
-        // Square possibleMove = board[s.getX()][s.getY()-1];
-        // Square possibleMove1 = board[s.getX()][s.getY()+1];
+        if(s.getY() - 1 >= 0){
+            Square possibleMove = board[s.getX()][s.getY()-1];
+            if(possibleMove.getPiece() == null || possibleMove.getPiece().getIsWhite() != playerColor) this.addValidMove(possibleMove);
+        }
+
+        if(s.getY() + 1 <= 7){
+            Square possibleMove = board[s.getX()][s.getY()+1];
+            if(possibleMove.getPiece() == null || possibleMove.getPiece().getIsWhite() != playerColor) this.addValidMove(possibleMove);
+        }
+
     }
 }
