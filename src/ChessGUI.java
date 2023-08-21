@@ -2,8 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
-import java.awt.event.WindowListener;
-import java.awt.event.WindowEvent;
+import java.util.List;
+import java.util.ArrayList;
+
+// TODO: fix this mess of what I call "code" although i'm contemplating since it already works
 
 public class ChessGUI extends JFrame{
     static final int WIDTH = 800;
@@ -17,7 +19,8 @@ public class ChessGUI extends JFrame{
     Game game = new Game();
     Board b = game.board;
     JPanel p = new ChessPanel();
-    
+    Square active = null;
+    Square prev = null;
 
     public ChessGUI(){
         this.setSize(WIDTH, HEIGHT); 
@@ -30,30 +33,74 @@ public class ChessGUI extends JFrame{
     }
 
     public class ChessMouseListener extends MouseAdapter{
-        ChessGUI p;
-        ChessMouseListener(ChessGUI p){
+        private ChessGUI p;
+        public ChessMouseListener(ChessGUI p){
             this.p = p;
         }
+        public void processMove(Square oldSpot, Square newSpot){
+            Piece oldPiece = oldSpot.getPiece();
+            List<Square> validMoves = oldPiece.getValidMoves();
+            validMoves.get(validMoves.indexOf(newSpot)).setPiece(oldPiece);
+            b.getBoard()[oldSpot.getX()][oldSpot.getY()].setPiece(null);
+            
+            if(oldPiece.getClass().getName() == "Pawn"){
+                Pawn pawn = (Pawn) oldPiece;
+                pawn.firstMove = false;
+            } 
+
+            oldSpot.setIsActive(false);
+            for(Square s : oldPiece.getValidMoves())
+                s.setIsActive(false);
+            b.generateMoves();
+        }
+      
         @Override 
         public void mouseClicked(MouseEvent e){
+            if(e.getButton() != 1) return; 
             int y = e.getX() / GAPX;
             int x = e.getY() / GAPY;
 
+            // if the coordinate is out of bounds, return
             if(!(x >= 0 && x <= 7) && !(y >=0 && y <= 7)) return;
 
-            Square active = b.getBoard()[x][y];
-            Piece p = active.getPiece();
-            
-            if(e.getButton() != 1 && p == null) return; 
-
-            String w = p.getIsWhite() ? "white" : "black";
-            System.out.printf("Clicked board[%d][%d] || Piece type = %s %s\n", x, y, w, p.getClass().getName());
-            System.out.println("Available moves:");
-            active.setIsActive(true);
-            for(Square s : p.getValidMoves()){
-                s.setIsActive(true);
-                System.out.printf("%d %d\n", s.getX(), s.getY());
+            // move a piece
+            if(this.p.active != null && this.p.active.getPiece() != null && b.getBoard()[x][y].getIsActive()){
+                this.processMove(this.p.active, b.getBoard()[x][y]);
+                this.p.repaint();
+                return;
             }
+            // if there was an active piece before this method call, transfer it to prev
+            if(this.p.active != null) this.p.prev = this.p.active; 
+            this.p.active = b.getBoard()[x][y];
+            Piece piece = this.p.active.getPiece();
+
+            // TODO: remove upon completion
+            // String w = piece.getIsWhite() ? "white" : "black";
+            // System.out.printf("Clicked board[%d][%d] || Piece type = %s %s\n", x, y, w, piece.getClass().getName());
+            if(piece != null){
+                this.p.active.setIsActive(true);
+                for(Square s : piece.getValidMoves()){
+                    System.out.printf("(%d, %d)\n", s.getX(), s.getY());
+                    s.setIsActive(true);
+                }
+            }
+            // stores common elements from active and previous elements
+            List<Square> retain = null;
+            if(this.p.active.getPiece() != null)
+                retain = new ArrayList<>(this.p.active.getPiece().getValidMoves());
+
+            if(this.p.prev != null && this.p.prev.getPiece() != null && retain != null)
+                retain.retainAll(this.p.prev.getPiece().getValidMoves());
+
+            // remove highlight if not active anymore
+            if(this.p.prev != null && this.p.prev.getPiece() != null){
+                this.p.prev.setIsActive(false);
+                for(Square s : this.p.prev.getPiece().getValidMoves()){
+                    if(retain != null && retain.contains(s)) continue; // skip if the square should still be active
+                    s.setIsActive(false);
+                }
+            }
+
             this.p.repaint();
             // the following lines of code move a selected piece (currently broken and works only on pawns). TODO: implement highlight and click movement.
             // p.getValidMoves().get(0).setPiece(p);
@@ -63,7 +110,6 @@ public class ChessGUI extends JFrame{
             //     pawn.firstMove = false;
             // } 
             // b.generateMoves();
-            
         }
     }
 
@@ -81,7 +127,7 @@ public class ChessGUI extends JFrame{
                 for(int j = 0; j < 8; ++j){
                     Rectangle r = new Rectangle(i * GAPX, j * GAPY, GAPX, GAPY);
                     if(isWhite && !board[j][i].getIsActive())
-                        g2.setColor(new Color(118, 150, 86)); //board[i][j].getColor()
+                        g2.setColor(new Color(118, 150, 86));
                     else if(!isWhite && !board[j][i].getIsActive())
                         g2.setColor(new Color(238, 238, 210));
                     else
