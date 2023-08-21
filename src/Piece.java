@@ -35,7 +35,6 @@ public abstract class Piece {
         return validMoves;
     }
 
-
     public void addValidMove(Square s){
         validMoves.add(s);
     }

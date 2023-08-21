@@ -4,7 +4,7 @@ public class Bishop extends Piece{
         super(isWhite, path);
     }
 
-    // god this is depressing i should fix this when i'm in a better state of mind
+    // god this is depressing and abhorrent i should fix this when i'm in a better state of mind
     @Override
     public void setValidMoves(Board b, Square s){
         Square[][] board = b.getBoard();

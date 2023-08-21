@@ -53,6 +53,7 @@ public class Queen extends Piece{
 
         // HORIZONTAL
         // right
+        oppositeColorHit = false;
         for(int i = s.getY() + 1; i < 8; ++i){
             if(oppositeColorHit) break;
             Square possibleMove = board[s.getX()][i];
