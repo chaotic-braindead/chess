@@ -5,11 +5,13 @@ public class Square {
     private int y;
     private Piece p;
     private Rectangle r;
+    private boolean isActive;
 
     public Square(int x, int y, Piece p){
         this.x = x;
         this.y = y;
         this.p = p;
+        this.isActive = false;
     }
 
     public int getX(){
@@ -28,6 +30,10 @@ public class Square {
         return this.r;
     }
 
+    public boolean getIsActive(){
+        return this.isActive;
+    }
+
     public void setX(int x){
         this.x = x;
     }
@@ -44,4 +50,7 @@ public class Square {
         this.r = r;
     }
 
+    public void setIsActive(boolean isActive){
+        this.isActive = isActive;
+    }
 }

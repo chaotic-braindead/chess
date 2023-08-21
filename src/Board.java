@@ -46,9 +46,7 @@ public class Board {
             for(int j = 0; j < 8; ++j){
                 Square s = this.board[i][j];
                 Piece p = s.getPiece();
-                if(p != null){
-                    p.setValidMoves(this, s);
-                }
+                if(p != null) p.setValidMoves(this, s);
             }
         }
     }
