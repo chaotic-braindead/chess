@@ -37,7 +37,7 @@ public class Pawn extends Piece{
                     this.addValidMove(diag2);
 
             }
-            // en passant
+            // TODO: en passant
             // Square left = this.getIsWhite() ? board[s.getX()][s.getY() - 1] : board[s.getX()][s.getY() + 1];
             // Square right = this.getIsWhite() ? board[s.getX()][s.getY() + 1] : board[s.getX()][s.getY() - 1];
             // if(left.getPiece() != null && left.getPiece().getClass().getName() == "Pawn")

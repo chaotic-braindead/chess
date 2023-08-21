@@ -5,7 +5,7 @@ public class King extends Piece {
     
     private boolean canCastle = true;
     private boolean isChecked = false;
-    
+
     public King(boolean isWhite, String path){
         super(isWhite, path);
     }
@@ -45,6 +45,6 @@ public class King extends Piece {
             Square possibleMove = board[s.getX()][s.getY()+1];
             if(possibleMove.getPiece() == null || possibleMove.getPiece().getIsWhite() != playerColor) this.addValidMove(possibleMove);
         }
-
+        // TODO: castling
     }
 }

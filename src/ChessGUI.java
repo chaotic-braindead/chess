@@ -21,6 +21,8 @@ public class ChessGUI extends JFrame{
     JPanel p = new ChessPanel();
     Square active = null;
     Square prev = null;
+    boolean white = true;
+    
 
     public ChessGUI(){
         this.setSize(WIDTH, HEIGHT); 
@@ -62,17 +64,21 @@ public class ChessGUI extends JFrame{
 
             // if the coordinate is out of bounds, return
             if(!(x >= 0 && x <= 7) && !(y >=0 && y <= 7)) return;
-
+    
             // move a piece
             if(this.p.active != null && this.p.active.getPiece() != null && b.getBoard()[x][y].getIsActive()){
                 this.processMove(this.p.active, b.getBoard()[x][y]);
+                this.p.white = !white;
                 this.p.repaint();
                 return;
             }
+
             // if there was an active piece before this method call, transfer it to prev
             if(this.p.active != null) this.p.prev = this.p.active; 
+
             this.p.active = b.getBoard()[x][y];
             Piece piece = this.p.active.getPiece();
+            
 
             // TODO: remove upon completion
             // String w = piece.getIsWhite() ? "white" : "black";
@@ -80,6 +86,7 @@ public class ChessGUI extends JFrame{
             if(piece != null){
                 this.p.active.setIsActive(true);
                 for(Square s : piece.getValidMoves()){
+                    if(piece.getIsWhite() != white) continue;
                     s.setIsActive(true);
                 }
             }
