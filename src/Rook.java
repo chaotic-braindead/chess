@@ -13,7 +13,7 @@ public class Rook extends Piece {
         Square[][] board = b.getBoard();
 
         // HORIZONTAL
-        // right side
+        // right
         for(int i = s.getY() + 1; i < 8; ++i){
             if(oppositeColorHit) break;
             Square possibleMove = board[s.getX()][i];
@@ -22,7 +22,7 @@ public class Rook extends Piece {
             this.addValidMove(possibleMove);
         }
         oppositeColorHit = false;
-        // left side
+        // left 
         for(int i = s.getY() - 1; i >= 0; --i){
             if(oppositeColorHit) break;
             Square possibleMove = board[s.getX()][i];
