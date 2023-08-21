@@ -4,10 +4,9 @@ public class Queen extends Piece{
     public Queen(boolean isWhite, String path){
         super(isWhite, path);
     }
-    
+    // literally just copied bishop and rook
     @Override
     public void setValidMoves(Board b, Square s){
-        this.clearValidMoves();
         Square[][] board = b.getBoard();
         int j = s.getY() + 1;
         boolean playerColor = this.getIsWhite();
@@ -91,5 +90,6 @@ public class Queen extends Piece{
             if(possibleMove.getPiece() != null && possibleMove.getPiece().getIsWhite() != playerColor) oppositeColorHit = true;
             this.addValidMove(possibleMove);
         }
+    
     }
 }

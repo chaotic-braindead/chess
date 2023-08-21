@@ -4,7 +4,7 @@ public class Knight extends Piece{
         super(isWhite, path);
     }
     
-    
+    // how does the horsey move
     @Override
     public void setValidMoves(Board b, Square s){}
 }

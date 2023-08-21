@@ -8,7 +8,6 @@ public class Pawn extends Piece{
     
     @Override
     public void setValidMoves(Board b, Square s){
-        this.clearValidMoves();
         Square[][] board = b.getBoard();
         if(this.getIsWhite() && (s.getX() == 0)) return;
         if(!this.getIsWhite() && (s.getX() == 7)) return;
@@ -38,6 +37,12 @@ public class Pawn extends Piece{
                     this.addValidMove(diag2);
 
             }
+            // en passant
+            // Square left = this.getIsWhite() ? board[s.getX()][s.getY() - 1] : board[s.getX()][s.getY() + 1];
+            // Square right = this.getIsWhite() ? board[s.getX()][s.getY() + 1] : board[s.getX()][s.getY() - 1];
+            // if(left.getPiece() != null && left.getPiece().getClass().getName() == "Pawn")
+
         }
+        
     }
 }

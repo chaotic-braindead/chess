@@ -7,7 +7,6 @@ public class Bishop extends Piece{
     // god this is depressing i should fix this when i'm in a better state of mind
     @Override
     public void setValidMoves(Board b, Square s){
-        this.clearValidMoves();
         Square[][] board = b.getBoard();
         int j = s.getY() + 1;
         boolean playerColor = this.getIsWhite();

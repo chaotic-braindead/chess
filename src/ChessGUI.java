@@ -80,7 +80,6 @@ public class ChessGUI extends JFrame{
             if(piece != null){
                 this.p.active.setIsActive(true);
                 for(Square s : piece.getValidMoves()){
-                    System.out.printf("(%d, %d)\n", s.getX(), s.getY());
                     s.setIsActive(true);
                 }
             }
@@ -102,14 +101,6 @@ public class ChessGUI extends JFrame{
             }
 
             this.p.repaint();
-            // the following lines of code move a selected piece (currently broken and works only on pawns). TODO: implement highlight and click movement.
-            // p.getValidMoves().get(0).setPiece(p);
-            // b.getBoard()[x][y].setPiece(null);
-            // if(p.getClass().getName() == "Pawn"){
-            //     Pawn pawn = (Pawn) p;
-            //     pawn.firstMove = false;
-            // } 
-            // b.generateMoves();
         }
     }
 

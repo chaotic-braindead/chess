@@ -7,7 +7,6 @@ public class Rook extends Piece {
    
     @Override
     public void setValidMoves(Board b, Square s){
-        this.clearValidMoves();
         boolean playerColor = this.getIsWhite();
         boolean oppositeColorHit = false;
         Square[][] board = b.getBoard();

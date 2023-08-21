@@ -1,7 +1,5 @@
 import java.util.List;
 import javax.imageio.ImageIO;
-import javax.print.attribute.standard.MediaSize.ISO;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,13 +10,11 @@ import java.awt.Image;
 
 public abstract class Piece {
     private boolean isWhite;
-    private boolean isEaten;
     private List<Square> validMoves;
     private Image icon;
 
     public Piece(boolean isWhite, String path){
         this.isWhite = isWhite;
-        isEaten = false;
         validMoves = new ArrayList<>();
         try{
             if(!isWhite) path = path.substring(0, 37) + "b" + path.substring(37);  // i know this creates new string instances but it works so... 
@@ -34,10 +30,6 @@ public abstract class Piece {
     public boolean getIsWhite(){
         return this.isWhite;
     }
-
-    public boolean getIsEaten(){
-        return this.isEaten;
-    } 
     
     public List<Square> getValidMoves(){
         return validMoves;
@@ -58,10 +50,6 @@ public abstract class Piece {
 
     public void setIsWhite(boolean isWhite){
         this.isWhite = isWhite;
-    }
-
-    public void setIsEaten(boolean isEaten){
-        this.isEaten = isEaten;
     }
 
     // TODO: implement moves for all pieces god help me
