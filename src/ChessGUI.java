@@ -5,7 +5,7 @@ import java.awt.event.MouseAdapter;
 import java.util.List;
 import java.util.ArrayList;
 
-// TODO: fix this mess of what I call "code" although i'm contemplating since it already works
+// TODO: fix this mess of what I call "code" although i'm contemplating since it kinda works
 
 public class ChessGUI extends JFrame{
     static final int WIDTH = 800;
