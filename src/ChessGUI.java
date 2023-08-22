@@ -57,14 +57,14 @@ public class ChessGUI extends JFrame{
                         newSpot.setPiece(oldPiece);
                         b.getBoard()[newSpot.getX()][newSpot.getY()-1].setPiece(rook);
                     }
-                    else if(oldSpot.getY() - 3 == newSpot.getY()){
+                    else if(oldSpot.getY() - 2 == newSpot.getY()){
                         Square rookSquare = b.getBoard()[newSpot.getX()][newSpot.getY() - 2];
                         Rook rook = (Rook) rookSquare.getPiece();
                         rookSquare.setPiece(null);
+                        Square newRook = b.getBoard()[newSpot.getX()][newSpot.getY() + 1];
                         newSpot.setPiece(oldPiece);
-                        b.getBoard()[newSpot.getX()][newSpot.getY()+2].setPiece(rook);
+                        newRook.setPiece(rook);
                     }
-                    
                 }
                 king.setCanCastle(false, 0);
                 king.setCanCastle(false, 1);

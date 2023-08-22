@@ -40,8 +40,8 @@ public class King extends Piece {
         Square[][] board = b.getBoard();
         boolean playerColor = this.getIsWhite();
         boolean clear = true;
-        if(!firstMove){
-            for(int i = s.getY() - 1; i >= 0; ++i){
+        if(!this.firstMove){
+            for(int i = s.getY() - 1; i >= 0; --i){
                 Square sq = board[s.getX()][i];
                 if(sq.getPiece() != null && sq.getPiece().getClass().getName() != "Rook"){ clear = false; break;}            
             }
@@ -54,9 +54,11 @@ public class King extends Piece {
             this.canCastle[1] = clear;
         }
         if(this.canCastle[0]){
-            this.addValidMove(board[s.getX()][s.getY()-3]);
+            System.out.println("long castle available");
+            this.addValidMove(board[s.getX()][s.getY()-2]);
         }
         if(this.canCastle[1]){
+            System.out.println("short castle available");
             this.addValidMove(board[s.getX()][s.getY()+2]);
         }
         for(int i = s.getY() - 1; i <= s.getY() + 1 && (i >= 0 && i <= 7); i++){
