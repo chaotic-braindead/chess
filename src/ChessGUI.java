@@ -64,9 +64,10 @@ public class ChessGUI extends JFrame{
                         newSpot.setPiece(oldPiece);
                         b.getBoard()[newSpot.getX()][newSpot.getY()+2].setPiece(rook);
                     }
-                    king.setCanCastle(false, 0);
-                    king.setCanCastle(false, 1);
+                    
                 }
+                king.setCanCastle(false, 0);
+                king.setCanCastle(false, 1);
                 king.setFirstMove(true);
             }
             validMoves.get(validMoves.indexOf(newSpot)).setPiece(oldPiece);
