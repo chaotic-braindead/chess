@@ -12,9 +12,11 @@ public abstract class Piece {
     private boolean isWhite;
     private List<Square> validMoves;
     private Image icon;
+    private boolean canMove;
 
     public Piece(boolean isWhite, String path){
         this.isWhite = isWhite;
+        this.canMove = true;
         validMoves = new ArrayList<>();
         try{
             if(!isWhite) path = path.substring(0, 37) + "b" + path.substring(37);  // i know this creates new string instances but it works so... 
@@ -43,12 +45,19 @@ public abstract class Piece {
         validMoves.clear();
     }
 
+    public boolean getCanMove(){
+        return this.canMove;
+    }
     public Image getIcon(){
         return this.icon;
     }
 
     public void setIsWhite(boolean isWhite){
         this.isWhite = isWhite;
+    }
+
+    public void setCanMove(boolean canMove){
+        this.canMove = canMove;
     }
 
     // TODO: implement moves for all pieces god help me

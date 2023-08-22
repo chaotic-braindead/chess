@@ -6,7 +6,6 @@ public class Square {
     private Piece p;
     private Rectangle r;
     private boolean isActive;
-    private boolean checkingMove = false;
 
     public Square(int x, int y, Piece p){
         this.x = x;

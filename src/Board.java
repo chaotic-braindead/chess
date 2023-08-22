@@ -1,11 +1,18 @@
 public class Board {
     private Square[][] board;
+    private King whiteKing;
+    private King blackKing;
 
     public Board(){
         this.resetBoard();
+        this.whiteKing = (King) board[7][4].getPiece();
+        this.blackKing = (King) board[0][4].getPiece();
         this.generateMoves();
     }
   
+    public King getKing(boolean isWhite){
+        return isWhite ? this.whiteKing : this.blackKing;
+    }
 
     private void resetBoard(){
         // black
@@ -55,6 +62,7 @@ public class Board {
                 }
             }
         }
+        System.out.println("Generated moves");
     }
 
     public Square[][] getBoard(){

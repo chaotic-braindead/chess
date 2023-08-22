@@ -1,3 +1,6 @@
+import java.util.Iterator;
+import java.util.List;
+
 public class Queen extends Piece{
     final static String path = "C:\\Users\\raf\\Desktop\\chess\\chess\\img\\queen.png";
 
@@ -17,7 +20,14 @@ public class Queen extends Piece{
             Square possibleMove = board[i][j];
             j++;
             if(possibleMove.getPiece() != null && possibleMove.getPiece().getIsWhite() == playerColor) break;
-            if(possibleMove.getPiece() != null && possibleMove.getPiece().getIsWhite() != playerColor) oppositeColorHit = true;
+            if(possibleMove.getPiece() != null && possibleMove.getPiece().getIsWhite() != playerColor) {
+                if(possibleMove.getPiece().getClass().getName() == "King"){
+                    King king = (King) possibleMove.getPiece();
+                    king.setIsChecked(true);
+                    king.setWhoChecked(s);
+                }
+                oppositeColorHit = true;
+            }
             this.addValidMove(possibleMove);
         }
         j = s.getY() - 1;
@@ -27,7 +37,14 @@ public class Queen extends Piece{
             Square possibleMove = board[i][j];
             j--;
             if(possibleMove.getPiece() != null && possibleMove.getPiece().getIsWhite() == playerColor) break;
-            if(possibleMove.getPiece() != null && possibleMove.getPiece().getIsWhite() != playerColor) oppositeColorHit = true;
+            if(possibleMove.getPiece() != null && possibleMove.getPiece().getIsWhite() != playerColor) {
+                if(possibleMove.getPiece().getClass().getName() == "King"){
+                    King king = (King) possibleMove.getPiece();
+                    king.setIsChecked(true);
+                    king.setWhoChecked(s);
+                }
+                oppositeColorHit = true;
+            }
             this.addValidMove(possibleMove);
         }
         j = s.getY() + 1;
@@ -37,7 +54,14 @@ public class Queen extends Piece{
             Square possibleMove = board[i][j];
             j++;
             if(possibleMove.getPiece() != null && possibleMove.getPiece().getIsWhite() == playerColor) break;
-            if(possibleMove.getPiece() != null && possibleMove.getPiece().getIsWhite() != playerColor) oppositeColorHit = true;
+            if(possibleMove.getPiece() != null && possibleMove.getPiece().getIsWhite() != playerColor) {
+                if(possibleMove.getPiece().getClass().getName() == "King"){
+                    King king = (King) possibleMove.getPiece();
+                    king.setIsChecked(true);
+                    king.setWhoChecked(s);
+                }
+                oppositeColorHit = true;
+            }
             this.addValidMove(possibleMove);
         }
         j = s.getY() - 1;
@@ -47,18 +71,32 @@ public class Queen extends Piece{
             Square possibleMove = board[i][j];
             j--;
             if(possibleMove.getPiece() != null && possibleMove.getPiece().getIsWhite() == playerColor) break;
-            if(possibleMove.getPiece() != null && possibleMove.getPiece().getIsWhite() != playerColor) oppositeColorHit = true;
+            if(possibleMove.getPiece() != null && possibleMove.getPiece().getIsWhite() != playerColor) {
+                if(possibleMove.getPiece().getClass().getName() == "King"){
+                    King king = (King) possibleMove.getPiece();
+                    king.setIsChecked(true);
+                    king.setWhoChecked(s);
+                }
+                oppositeColorHit = true;
+            }
             this.addValidMove(possibleMove);
         }
 
-        // HORIZONTAL
-        // right
         oppositeColorHit = false;
+         // HORIZONTAL
+        // right
         for(int i = s.getY() + 1; i < 8; ++i){
             if(oppositeColorHit) break;
             Square possibleMove = board[s.getX()][i];
             if(possibleMove.getPiece() != null && possibleMove.getPiece().getIsWhite() == playerColor) break;
-            if(possibleMove.getPiece() != null && possibleMove.getPiece().getIsWhite() != playerColor) oppositeColorHit = true;
+            if(possibleMove.getPiece() != null && possibleMove.getPiece().getIsWhite() != playerColor){
+                if(possibleMove.getPiece().getClass().getName() == "King") {
+                    King king = (King) possibleMove.getPiece();
+                    king.setIsChecked(true);
+                    king.setWhoChecked(s);
+                }
+                oppositeColorHit = true;
+            }
             this.addValidMove(possibleMove);
         }
         oppositeColorHit = false;
@@ -67,7 +105,14 @@ public class Queen extends Piece{
             if(oppositeColorHit) break;
             Square possibleMove = board[s.getX()][i];
             if(possibleMove.getPiece() != null && possibleMove.getPiece().getIsWhite() == playerColor) break;
-            if(possibleMove.getPiece() != null && possibleMove.getPiece().getIsWhite() != playerColor) oppositeColorHit = true;
+            if(possibleMove.getPiece() != null && possibleMove.getPiece().getIsWhite() != playerColor){
+                if(possibleMove.getPiece().getClass().getName() == "King") {
+                    King king = (King) possibleMove.getPiece();
+                    king.setIsChecked(true);
+                    king.setWhoChecked(s);
+                }
+                oppositeColorHit = true;
+            }
             this.addValidMove(possibleMove);
         }
         oppositeColorHit = false;
@@ -78,7 +123,14 @@ public class Queen extends Piece{
             if(oppositeColorHit) break;
             Square possibleMove = board[i][s.getY()];
             if(possibleMove.getPiece() != null && possibleMove.getPiece().getIsWhite() == playerColor) break;
-            if(possibleMove.getPiece() != null && possibleMove.getPiece().getIsWhite() != playerColor) oppositeColorHit = true;
+            if(possibleMove.getPiece() != null && possibleMove.getPiece().getIsWhite() != playerColor){
+                if(possibleMove.getPiece().getClass().getName() == "King") {
+                    King king = (King) possibleMove.getPiece();
+                    king.setIsChecked(true);
+                    king.setWhoChecked(s);
+                }
+                oppositeColorHit = true;
+            }
             this.addValidMove(possibleMove);
         }
         oppositeColorHit = false;
@@ -88,8 +140,26 @@ public class Queen extends Piece{
             if(oppositeColorHit) break;
             Square possibleMove = board[i][s.getY()];
             if(possibleMove.getPiece() != null && possibleMove.getPiece().getIsWhite() == playerColor) break;
-            if(possibleMove.getPiece() != null && possibleMove.getPiece().getIsWhite() != playerColor) oppositeColorHit = true;
+            if(possibleMove.getPiece() != null && possibleMove.getPiece().getIsWhite() != playerColor){
+                if(possibleMove.getPiece().getClass().getName() == "King") {
+                    King king = (King) possibleMove.getPiece();
+                    king.setIsChecked(true);
+                    king.setWhoChecked(s);
+                }
+                oppositeColorHit = true;
+            }
             this.addValidMove(possibleMove);
+        }
+        
+        if(b.getKing(this.getIsWhite()).getIsChecked() && b.getKing(this.getIsWhite()).getWhoChecked().getPiece() != null){
+            Iterator<Square> it = this.getValidMoves().iterator();
+            while(it.hasNext()){
+                Square i = it.next();
+                Square whoChecked = b.getKing(this.getIsWhite()).getWhoChecked();
+                List<Square> moves = whoChecked.getPiece().getValidMoves();
+                if(i != whoChecked && !moves.contains(i))
+                    it.remove();
+            }
         }
     
     }
