@@ -12,12 +12,14 @@ public class Pawn extends Piece{
     
     @Override
     public void setValidMoves(Board b, Square s){
-        if(s.getPiece() != null && !s.getPiece().getCanMove()) return;
         Square[][] board = b.getBoard();
         if(this.getIsWhite() && (s.getX() == 0)) return;
         if(!this.getIsWhite() && (s.getX() == 7)) return;
         
-    
+        if(this.getPinnedBy() != null && this.getPinnedBy().getPiece() == this){
+            this.setPinnedBy(null);
+            this.setCanMove(true);
+        }
         Square forward = this.getIsWhite() ? board[s.getX() - 1][s.getY()] : board[s.getX() + 1][s.getY()];
         if(forward.getPiece() == null){
             this.addValidMove(forward);
@@ -27,7 +29,6 @@ public class Pawn extends Piece{
             if(fMove.getPiece() == null)
             this.addValidMove(fMove);
         }
-        //s.getY() < 7)
         if(this.getIsWhite()){
             if(s.getY() > 0){
                 Square diag = board[s.getX() - 1][s.getY() - 1];
@@ -83,6 +84,14 @@ public class Pawn extends Piece{
            
         // if(!this.getIsWhite())
         //     System.out.println(this + " " + b.getKing(this.getIsWhite()).getIsChecked());
+        if(!this.getCanMove()){
+            Iterator<Square> it = this.getValidMoves().iterator();
+            while(it.hasNext()){
+                Square i = it.next();
+                if(i != this.getPinnedBy())
+                    it.remove();
+            }
+        }
         if(b.getKing(this.getIsWhite()).getIsChecked() && b.getKing(this.getIsWhite()).getWhoChecked().getPiece() != null){
             Iterator<Square> it = this.getValidMoves().iterator();
             while(it.hasNext()){

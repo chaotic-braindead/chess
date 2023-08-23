@@ -59,6 +59,10 @@ public class Board {
                 if(p != null) {
                     p.clearValidMoves();
                     p.setValidMoves(this, s);
+                    for(Square move : p.getValidMoves()){
+                        King king = this.getKing(!p.getIsWhite());
+                        king.illegalMoves.add(move);
+                    }
                 }
             }
         }

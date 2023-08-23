@@ -14,8 +14,13 @@ public class Rook extends Piece {
         boolean oppositeColorHit = false;
         Square[][] board = b.getBoard();
         Square pinned = null;
+        if(this.getPinnedBy() != null && this.getPinnedBy().getPiece() == this){
+            this.setPinnedBy(null);
+            this.setCanMove(true);
+        }
         // HORIZONTAL
         // right
+        
         for(int i = s.getY() + 1; i < 8; ++i){
             Square possibleMove = board[s.getX()][i];
             if(oppositeColorHit){
@@ -25,6 +30,7 @@ public class Rook extends Piece {
                     break;
                 }
                 else {
+                    possibleMove.getPiece().setCanMove(true);
                     pinned.getPiece().setCanMove(true);
                     break;
                 }
@@ -53,6 +59,7 @@ public class Rook extends Piece {
                     break;
                 }
                 else {
+                    possibleMove.getPiece().setCanMove(true);
                     pinned.getPiece().setCanMove(true);
                     break;
                 }
@@ -83,6 +90,7 @@ public class Rook extends Piece {
                     break;
                 }
                 else {
+                    possibleMove.getPiece().setCanMove(true);
                     pinned.getPiece().setCanMove(true);
                     break;
                 }
@@ -112,6 +120,7 @@ public class Rook extends Piece {
                     break;
                 }
                 else {
+                    possibleMove.getPiece().setCanMove(true);
                     pinned.getPiece().setCanMove(true);
                     break;
                 }
@@ -128,6 +137,14 @@ public class Rook extends Piece {
                 oppositeColorHit = true;
             }
             this.addValidMove(possibleMove);
+        }
+        if(!this.getCanMove()){
+            Iterator<Square> it = this.getValidMoves().iterator();
+            while(it.hasNext()){
+                Square i = it.next();
+                if(i != this.getPinnedBy())
+                    it.remove();
+            }
         }
         if(b.getKing(this.getIsWhite()).getIsChecked() && b.getKing(this.getIsWhite()).getWhoChecked().getPiece() != null){
             Iterator<Square> it = this.getValidMoves().iterator();

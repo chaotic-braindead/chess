@@ -12,6 +12,10 @@ public class Knight extends Piece{
     public void setValidMoves(Board b, Square s){
         Square[][] board = b.getBoard();
         boolean playerColor = this.getIsWhite();
+        if(this.getPinnedBy() != null && this.getPinnedBy().getPiece() == this){
+            this.setPinnedBy(null);
+            this.setCanMove(true);
+        }
         if(s.getX() - 2 >= 0){
             if(s.getY() + 1 <= 7){
                 Square possibleMove = board[s.getX() - 2][s.getY() + 1];
@@ -107,6 +111,14 @@ public class Knight extends Piece{
                     }
                     this.addValidMove(possibleMove);
                 }
+            }
+        }
+        if(!this.getCanMove()){
+            Iterator<Square> it = this.getValidMoves().iterator();
+            while(it.hasNext()){
+                Square i = it.next();
+                if(i != this.getPinnedBy())
+                    it.remove();
             }
         }
         if(b.getKing(this.getIsWhite()).getIsChecked() && b.getKing(this.getIsWhite()).getWhoChecked().getPiece() != null){

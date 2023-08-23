@@ -3,8 +3,6 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
 import java.util.List;
-import java.util.ArrayList;
-
 
 // TODO: fix this mess of what I call "code" although i'm contemplating since it kinda works
 
@@ -70,6 +68,7 @@ public class ChessGUI extends JFrame{
                 king.setCanCastle(false, 1);
                 king.setFirstMove(true);
             }
+    
             validMoves.get(validMoves.indexOf(newSpot)).setPiece(oldPiece);
             b.getBoard()[oldSpot.getX()][oldSpot.getY()].setPiece(null);
 
@@ -77,6 +76,8 @@ public class ChessGUI extends JFrame{
             for(Square s : oldPiece.getValidMoves())
                 s.setIsActive(false);
 
+            if(oldPiece.getPinned() != null) oldPiece.getPinned().getPiece().setCanMove(true);                
+            // TODO: fix this since some moves that share the same square while in check are currently legal   
             if(b.getKing(oldPiece.getIsWhite()).getIsChecked()) b.getKing(oldPiece.getIsWhite()).setIsChecked(false);
             b.generateMoves();
         }
@@ -94,56 +95,35 @@ public class ChessGUI extends JFrame{
             }
             // move a piece
             if(this.p.active != null && this.p.active.getPiece() != null && b.getBoard()[x][y].getIsActive()){
+                if(this.p.active.getPiece() == b.getBoard()[x][y].getPiece()) return;
                 this.processMove(this.p.active, b.getBoard()[x][y]);
                 this.p.white = !this.p.white;
                 this.p.repaint();
                 return;
             }
 
-
-            // if there was an active piece before this method call, transfer it to prev
-            if(this.p.active != null) this.p.prev = this.p.active; 
+            if(this.p.prev != this.p.active){
+                for(Square[] sq : b.getBoard()){
+                    for(Square s : sq){
+                        s.setIsActive(false);
+                    }
+                }
+            }
+            
+            this.p.prev = this.p.active; 
 
             this.p.active = b.getBoard()[x][y];
             Piece piece = this.p.active.getPiece();
             
-
-            // TODO: remove upon completion
-            // String w = piece.getIsWhite() ? "white" : "black";
-            // System.out.printf("Clicked board[%d][%d] || Piece type = %s %s\n", x, y, w, piece.getClass().getName());
             
-            // Iterator<Square> it = piece.getValidMoves().iterator();
-            // while(it.hasNext()){
-            //     Square i = it.next();
-            //     if(i.getPiece() != null && !i.getPiece().getCanMove())
-            //         it.remove();
-            // }
-            
-
             if(piece != null){
+                if(!piece.getCanMove()) b.generateMoves();
                 this.p.active.setIsActive(true);
                 for(Square s : piece.getValidMoves()){
-                    if(piece.getIsWhite() != white || !piece.getCanMove()) continue;
+                    if(piece.getIsWhite() != white) continue;
                     s.setIsActive(true);
                 }
             }
-            // stores common elements from active and previous elements
-            List<Square> retain = null;
-            if(this.p.active.getPiece() != null)
-                retain = new ArrayList<>(this.p.active.getPiece().getValidMoves());
-
-            if(this.p.prev != null && this.p.prev.getPiece() != null && retain != null)
-                retain.retainAll(this.p.prev.getPiece().getValidMoves());
-
-            // remove highlight if not active anymore
-            if(this.p.prev != null && this.p.prev.getPiece() != null){
-                this.p.prev.setIsActive(false);
-                for(Square s : this.p.prev.getPiece().getValidMoves()){
-                    if(retain != null && retain.contains(s)) continue; // skip if the square should still be active
-                    s.setIsActive(false);
-                }
-            }
-
             this.p.repaint();
         }
     }

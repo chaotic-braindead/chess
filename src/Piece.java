@@ -13,11 +13,15 @@ public abstract class Piece {
     private List<Square> validMoves;
     private Image icon;
     private boolean canMove;
+    private Square pinned;
+    private Square pinnedBy;
 
     public Piece(boolean isWhite, String path){
         this.isWhite = isWhite;
         this.canMove = true;
         validMoves = new ArrayList<>();
+        this.pinned = null;
+        this.pinnedBy = null;
         try{
             if(!isWhite) path = path.substring(0, 37) + "b" + path.substring(37);  // i know this creates new string instances but it works so... 
             BufferedImage image = ImageIO.read(new File(path));
@@ -35,6 +39,18 @@ public abstract class Piece {
     
     public List<Square> getValidMoves(){
         return validMoves;
+    }
+    public Square getPinned(){
+        return this.pinned;
+    }
+    public void setPinned(Square pinned){
+        this.pinned = pinned;
+    }
+    public Square getPinnedBy(){
+        return this.pinnedBy;
+    }
+    public void setPinnedBy(Square pinnedBy){
+        this.pinnedBy = pinnedBy;
     }
 
     public void addValidMove(Square s){
@@ -59,6 +75,7 @@ public abstract class Piece {
     public void setCanMove(boolean canMove){
         this.canMove = canMove;
     }
+    
 
     // TODO: implement moves for all pieces god help me
     public abstract void setValidMoves(Board b, Square s);
